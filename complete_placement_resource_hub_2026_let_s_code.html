@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Complete Placement & Resource Hub 2026 — Let's Code</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #2a2a3a;
+    --accent: #00e5ff;
+    --accent2: #7c3aed;
+    --accent3: #f59e0b;
+    --accent4: #10b981;
+    --accent5: #ef4444;
+    --accent6: #ec4899;
+    --text: #e8e8f0;
+    --muted: #8b8ba0;
+    --glow: rgba(0,229,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Syne', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 36px 24px 80px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Header */
+  header {
+    text-align: center;
+    margin-bottom: 36px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 6px 16px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .badge::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--glow);
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 5vw, 3.8rem);
+    font-weight: 800;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 400;
+    max-width: 720px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Source Quick-Links Pills */
+  .source-pills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .source-pill {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 7px 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .source-pill:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(0,229,255,0.12);
+  }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    justify-content: center;
+    gap: 44px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 1.85rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: 'Space Mono', monospace;
+  }
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 4px;
+  }
+
+  /* Navigation Tabs */
+  .hub-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+  .hub-tab {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.74rem;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .hub-tab:hover {
+    border-color: var(--accent);
+    color: #fff;
+  }
+  .hub-tab.active {
+    background: rgba(0,229,255,0.12);
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  /* Toolbar Controls */
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 12px 18px;
+    border-radius: 8px;
+  }
+  .search-input {
+    flex: 1;
+    min-width: 220px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 9px 14px;
+    border-radius: 6px;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.78rem;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus {
+    border-color: var(--accent);
+  }
+  .toolbar-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .action-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 36px;
+    justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+  }
+  .legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+
+  /* Phase */
+  .phase {
+    margin-bottom: 48px;
+    animation: fadeUp 0.5s ease both;
+  }
+
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .phase-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+  }
+
+  .phase-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .phase-source-link {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid rgba(0,229,255,0.35);
+    background: rgba(0,229,255,0.06);
+    padding: 3px 9px;
+    border-radius: 4px;
+    transition: all 0.2s;
+  }
+  .phase-source-link:hover {
+    background: var(--accent);
+    color: #000;
+  }
+
+  .phase-line {
+    flex: 1;
+    min-width: 40px;
+    height: 1px;
+    background: var(--border);
+    position: relative;
+  }
+  .phase-line::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: var(--phase-color, var(--accent));
+    opacity: 0.5;
+  }
+
+  .phase-tag {
+    font-family: 'Space Mono', monospace;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--phase-color-bg, rgba(0,229,255,0.1));
+    color: var(--phase-color, var(--accent));
+    border: 1px solid var(--phase-color, var(--accent));
+    opacity: 0.85;
+    white-space: nowrap;
+  }
+
+  /* Topic grid */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 14px;
+  }
+
+  .topic-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .topic-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--phase-color, var(--accent));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .topic-card:hover {
+    border-color: var(--phase-color, var(--accent));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  }
+  .topic-card:hover::before { opacity: 1; }
+
+  .topic-card.expanded { border-color: var(--phase-color, var(--accent)); }
+  .topic-card.expanded::before { opacity: 1; }
+
+  .topic-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .topic-icon {
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .topic-name {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #fff;
+    flex: 1;
+    line-height: 1.35;
+  }
+
+  .topic-count {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    padding: 2px 6px;
+    border-radius: 4px;
+    flex-shrink: 0;
+  }
+
+  .expand-btn {
+    font-size: 0.75rem;
+    color: var(--muted);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .topic-card.expanded .expand-btn { transform: rotate(180deg); }
+
+  .topic-detail {
+    display: none;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .topic-card.expanded .topic-detail { display: block; }
+
+  .subtopics {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .subtopics li {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    line-height: 1.55;
+  }
+  .subtopics li::before {
+    content: '→';
+    color: var(--phase-color, var(--accent));
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* Clickable Resource Links inside cards */
+  .res-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(0,229,255,0.45);
+    padding-bottom: 1px;
+    transition: all 0.15s ease;
+    display: inline;
+    font-weight: 700;
+  }
+  .res-link:hover {
+    color: #fff;
+    background: rgba(0,229,255,0.16);
+    border-bottom-color: #fff;
+    padding: 1px 5px;
+    margin: -1px -5px;
+    border-radius: 3px;
+  }
+  .ext-arrow {
+    font-size: 0.65rem;
+    opacity: 0.85;
+    margin-left: 3px;
+  }
+
+  /* Progress tracker */
+  .progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--border);
+    z-index: 100;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent2), var(--accent));
+    width: 0%;
+    transition: width 0.3s ease;
+  }
+
+  /* Timeline connector */
+  .timeline-line {
+    width: 2px;
+    height: 32px;
+    background: linear-gradient(var(--border), transparent);
+    margin: -16px auto 0;
+    display: block;
+  }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Footer note */
+  .footer-note {
+    text-align: center;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.74rem;
+    line-height: 2;
+  }
+  .footer-note a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  .footer-note a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 600px) {
+    .stats { gap: 24px; }
+    .topics-grid { grid-template-columns: 1fr; }
+    .toolbar { flex-direction: column; align-items: stretch; }
+    .toolbar-actions { justify-content: space-between; }
+  }
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<div class="container">
+  <header>
+    <div class="badge">🚀 Let's Code · Complete Interactive Resource Hub 2026</div>
+    <h1>Placement Roadmap &<br>Clickable Resource Hub</h1>
+    <p class="subtitle">Every roadmap phase, DSA problem & language guide, A-to-Z Placement Kit tool, curated YouTube playlist, and Google Drive study folder — with direct clickable links that open immediately.</p>
+
+    <div class="source-pills">
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/placement/" target="_blank" rel="noopener noreferrer">🎯 Placement Roadmap ↗</a>
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/dsa/" target="_blank" rel="noopener noreferrer">💻 DSA Roadmap ↗</a>
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/AtoZ-Placement-Kit/" target="_blank" rel="noopener noreferrer">🧰 A to Z Placement Kit ↗</a>
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/Awesome-Youtube-Playlists/" target="_blank" rel="noopener noreferrer">📺 Awesome YouTube Playlists ↗</a>
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/free-placement-google-drive-links/" target="_blank" rel="noopener noreferrer">📁 Study Resources & Drive Links ↗</a>
+      <a class="source-pill" href="https://www.lets-code.co.in/articles/resources/" target="_blank" rel="noopener noreferrer">📚 Resources Hub ↗</a>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat-num">15</div><div class="stat-label">Sections</div></div>
+      <div class="stat"><div class="stat-num">88</div><div class="stat-label">Topic Cards</div></div>
+      <div class="stat"><div class="stat-num">450+</div><div class="stat-label">Clickable Links</div></div>
+    </div>
+  </header>
+
+  <div class="hub-tabs" id="hubTabs">
+    <button type="button" class="hub-tab active" data-section="all">🌐 All Roadmaps & Resources</button>
+    <button type="button" class="hub-tab" data-section="placement">🎯 Placement Roadmap</button>
+    <button type="button" class="hub-tab" data-section="dsa">💻 DSA Roadmap & Questions</button>
+    <button type="button" class="hub-tab" data-section="atoz">🧰 A to Z Placement Kit</button>
+    <button type="button" class="hub-tab" data-section="youtube">📺 Awesome YouTube Playlists</button>
+    <button type="button" class="hub-tab" data-section="resources">📁 Study Notes, Drive & Startups</button>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#a78bfa"></div>Placement Process</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#00e5ff"></div>DSA & Languages</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#7c3aed"></div>CS Core & Projects</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#f59e0b"></div>A-to-Z Kit & Jobs</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#ec4899"></div>YouTube Playlists</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#10b981"></div>Drive Notes & Startups</div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" id="searchInput" class="search-input" placeholder="Search any resource, link, playlist, DSA problem, or company (e.g. Striver, LeetCode, Drive, System Design, Amazon)...">
+    <div class="toolbar-actions">
+      <button type="button" class="action-btn" id="expandAllBtn">Expand All</button>
+      <button type="button" class="action-btn" id="collapseAllBtn">Collapse All</button>
+    </div>
+  </div>
+
+  <div id="roadmap"></div>
+
+  <div class="footer-note">
+    Click any topic card to expand · Click any <span style="color:var(--accent)">highlighted link ↗</span> to open the resource in a new tab · Sources:
+    <a href="https://www.lets-code.co.in/articles/placement/" target="_blank" rel="noopener noreferrer">Placement</a> ·
+    <a href="https://www.lets-code.co.in/articles/dsa/" target="_blank" rel="noopener noreferrer">DSA</a> ·
+    <a href="https://www.lets-code.co.in/articles/AtoZ-Placement-Kit/" target="_blank" rel="noopener noreferrer">A-to-Z Kit</a> ·
+    <a href="https://www.lets-code.co.in/articles/Awesome-Youtube-Playlists/" target="_blank" rel="noopener noreferrer">YouTube Playlists</a> ·
+    <a href="https://www.lets-code.co.in/articles/free-placement-google-drive-links/" target="_blank" rel="noopener noreferrer">Drive Resources</a>
+  </div>
+</div>
+
+<script>
+const L = (text, url) => `<a class="res-link" href="${url}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">${text}<span class="ext-arrow">↗</span></a>`;
+const YT = (text, query) => L(text, `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`);
+const LC = (text, slug) => L(text, `https://leetcode.com/problems/${slug}/`);
+
+const phases = [
+  // =========================================================================
+  // SECTION 1: PLACEMENT ROADMAP (lets-code.co.in/articles/placement/)
+  // =========================================================================
+  {
+    num: "01",
+    section: "placement",
+    title: "Placement Process, Timelines & Foundations",
+    tag: "Placement Roadmap · Phase 1",
+    sourceUrl: "https://www.lets-code.co.in/articles/placement/",
+    sourceLabel: "articles/placement",
+    color: "#a78bfa",
+    colorBg: "rgba(167,139,250,0.08)",
+    topics: [
+      {
+        icon: "🏢", name: "Service vs Product vs Dream Companies",
+        subs: [
+          `Full Guide: ${L("Complete Placement Preparation Roadmap 2026", "https://www.lets-code.co.in/articles/placement/")}`,
+          `Service Companies (TCS, Infosys, Wipro, Cognizant, Capgemini, HCL): Online Aptitude → Coding (1–2 DSA) → Tech Interview → HR`,
+          `Product Companies (Amazon, Microsoft, Flipkart, Paytm, Zomato): Online Coding (2–4 Medium/Hard DSA) → 2 Tech/System Design Rounds → Bar Raiser`,
+          `Check your readiness: ${L("Let's Code Job Ready Score", "https://www.lets-code.co.in/dashboard/job-ready-score/")}`
+        ]
+      },
+      {
+        icon: "📅", name: "Preparation Timelines (12m, 6m & 3m)",
+        subs: [
+          `12+ Months (2nd/3rd Year): M1–3 Language + DSA Basics | M4–6 DSA Inter + CS Core | M7–9 Adv DSA + Projects + Aptitude | M10–12 Mocks & Company Prep`,
+          `6 Months (Pre-Placement): M1–2 DSA + CS Core | M3–4 DSA Inter + Aptitude + 1 Project | M5 Mocks + Resume | M6 Company Prep`,
+          `3 Months Sprint: W1–2 ${L("LeetCode Top 150 Patterns", "https://www.lets-code.co.in/articles/leetcoderesources/")} | W3–4 OS, DBMS, CN, OOPs | W5–6 Aptitude Drills | W7–12 Mocks & Company PYQs`,
+          `Read: ${L("Third Year Placement Preparation Blog", "https://www.lets-code.co.in/blogs/third-year-placement-preparation-roadmap/")}`
+        ]
+      },
+      {
+        icon: "💻", name: "Programming Language Resources",
+        subs: [
+          `Python Tutorial: ${L("Python for Beginners (Official Docs)", "https://docs.python.org/3/tutorial/")}`,
+          `Java Tutorial: ${L("Java Tutorial – W3Schools", "https://www.w3schools.com/java/")}`,
+          `C++ Tutorial: ${L("C++ Tutorial – LearnCPP", "https://www.learncpp.com/")}`,
+          `JavaScript Tutorial: ${L("JavaScript Tutorial – W3Schools", "https://www.w3schools.com/js/")}`,
+          `Language Roadmaps: ${L("C++ Roadmap", "https://www.lets-code.co.in/articles/cpp-developer-roadmap/")} · ${L("Java Roadmap", "https://www.lets-code.co.in/articles/roadmap/")} · ${L("Python Roadmap", "https://www.lets-code.co.in/articles/roadmap/")}`
+        ]
+      },
+      {
+        icon: "⚙️", name: "CS Fundamentals (OS, DBMS, CN, OOPs)",
+        subs: [
+          `Operating Systems: ${YT("OS Playlist – Gate Smashers", "Gate Smashers Operating System Playlist")} · ${YT("OS Playlist – Neso Academy", "Neso Academy Operating System Playlist")}`,
+          `DBMS & SQL: ${YT("DBMS Playlist – Gate Smashers", "Gate Smashers DBMS Playlist")} · ${L("SQL Practice – W3Schools", "https://www.w3schools.com/sql/")} · ${L("SQL 50 – LeetCode Study Plan", "https://leetcode.com/studyplan/top-sql-50/")}`,
+          `Computer Networks: ${YT("CN Playlist – Gate Smashers", "Gate Smashers Computer Networks Playlist")} · ${YT("CN Playlist – Neso Academy", "Neso Academy Computer Networks Playlist")}`,
+          `OOPs & SOLID: ${YT("OOPs Playlist – Apna College", "Apna College OOPs Playlist")} · ${L("Complete CS Fundamentals Drive", "https://drive.google.com/drive/u/1/folders/18FBvExqEtt9mtNKKP65f_ETdtS7nCG1G")}`
+        ]
+      },
+      {
+        icon: "🛠️", name: "Build Projects & Source Code",
+        subs: [
+          `Project Repository: ${L("100+ Final Year Projects with Source Code – Let's Code", "https://www.lets-code.co.in/articles/finalyearprojects/")}`,
+          `Video Guide: ${YT("Final Year Project Ideas – YouTube", "Final Year Computer Science Project Ideas with Source Code")}`,
+          `Full-Stack Ideas: Job Board with Tracker, Real-time Collaborative Notes, E-Commerce + Payment Gateway, StackOverflow Mini`,
+          `Backend & AI Ideas: URL Shortener with Analytics, Social Feed API + Rate Limiting, JWT/OAuth2 Service, AI Resume Parser & Job Matcher`
+        ]
+      },
+      {
+        icon: "➗", name: "Aptitude, Resume & Company PYQs",
+        subs: [
+          `Aptitude Guide: ${L("Complete Aptitude Roadmap 2026", "https://www.lets-code.co.in/articles/aptituderoadmap/")} · ${L("IndiaBIX Practice Questions", "https://www.indiabix.com/")} · ${YT("Free Aptitude Material – YouTube", "CareerRide Complete Aptitude Course")}`,
+          `Resume & Outreach: ${L("6 Free ATS-Friendly Resume Templates", "https://www.lets-code.co.in/articles/resume/")} · ${L("Cold Email & Referral Templates", "https://www.lets-code.co.in/articles/coldemailtemplates/")}`,
+          `System Design & HR: ${L("System Design Roadmap 2026", "https://www.lets-code.co.in/articles/systemdesign/")} · ${L("Interview Questions & HR Prep", "https://www.lets-code.co.in/interview/interviewquestions/")}`,
+          `Company PYQs: ${L("All Company Previous Year Coding Questions (TCS, Infosys, Wipro, Amazon, Microsoft, Capgemini, Accenture, HCL)", "https://www.lets-code.co.in/previousyearcodingquestion/pyqs/")}`,
+          `Mock Tests & Experiences: ${L("Let's Code Free Mock MCQ Test", "https://www.lets-code.co.in/dashboard/")} · ${L("AmbitionBox", "https://www.ambitionbox.com/")} · ${L("PrepInsta", "https://prepinsta.com/")} · ${L("Real Interview Experiences", "https://www.lets-code.co.in/interview-experience/")}`
+        ]
+      }
+    ]
+  },
+
+  // =========================================================================
+  // SECTION 2: DSA ROADMAP (lets-code.co.in/articles/dsa/)
+  // =========================================================================
+  {
+    num: "02",
+    section: "dsa",
+    title: "DSA Roadmap: Language Tutorials, Data Structures & Algorithms",
+    tag: "articles/dsa · Core Guide",
+    sourceUrl: "https://www.lets-code.co.in/articles/dsa/",
+    sourceLabel: "articles/dsa",
+    color: "#00e5ff",
+    colorBg: "rgba(0,229,255,0.08)",
+    topics: [
+      {
+        icon: "🔤", name: "1. Programming Fundamentals & Syntax",
+        subs: [
+          `Language Syntax: ${L("Python for Beginners", "https://www.w3schools.com/python/")} · ${L("Java Tutorial", "https://www.w3schools.com/java/")} · ${L("C++ Tutorial", "https://www.w3schools.com/cpp/")} · ${L("JavaScript Tutorial", "https://www.w3schools.com/js/")}`,
+          `Control Structures: ${L("Python Control Flow", "https://docs.python.org/3/tutorial/controlflow.html")} · ${L("Java Loops & If-Else", "https://www.w3schools.com/java/java_conditions.asp")} · ${L("C++ Control Structures", "https://www.w3schools.com/cpp/cpp_conditions.asp")} · ${L("JS Control Flow", "https://www.w3schools.com/js/js_if_else.asp")}`,
+          `Functions & Recursion: ${L("Python Functions", "https://www.w3schools.com/python/python_functions.asp")} · ${L("Java Methods", "https://www.w3schools.com/java/java_methods.asp")} · ${L("C++ Functions", "https://www.w3schools.com/cpp/cpp_functions.asp")} · ${L("JS Functions", "https://www.w3schools.com/js/js_functions.asp")}`,
+          `OOP Basics: ${L("Python OOP", "https://www.geeksforgeeks.org/python-oops-concepts/")} · ${L("Java OOP", "https://www.w3schools.com/java/java_oop.asp")} · ${L("C++ OOP", "https://www.w3schools.com/cpp/cpp_oop.asp")} · ${L("JS OOP", "https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/Object-oriented_programming")}`,
+          `Algorithm Design: ${L("How to Write Pseudo Code Tutorial – GeeksforGeeks", "https://www.geeksforgeeks.org/how-to-write-a-pseudo-code/")}`
+        ]
+      },
+      {
+        icon: "📦", name: "2.1–2.3 Arrays, Strings & Linked Lists",
+        subs: [
+          `Arrays (1D/2D/Dynamic): ${L("Python Arrays", "https://www.geeksforgeeks.org/python-arrays/")} · ${L("Java Arrays", "https://www.geeksforgeeks.org/arrays-in-java/")} · ${L("C++ Arrays", "https://www.geeksforgeeks.org/c-arrays/")} · ${L("JS Arrays", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array")}`,
+          `Strings (Matching, RLE, Huffman): ${L("Python Strings", "https://www.geeksforgeeks.org/python-string/")} · ${L("Java Strings", "https://www.geeksforgeeks.org/strings-in-java/")} · ${L("C++ Strings", "https://www.geeksforgeeks.org/strings-in-cpp/")} · ${L("JS Strings", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String")}`,
+          `Linked Lists (Singly, Doubly, Circular): ${L("Python Linked Lists", "https://www.geeksforgeeks.org/python-linked-list/")} · ${L("Java Linked Lists", "https://www.geeksforgeeks.org/linked-list-in-java/")} · ${L("C++ Linked Lists", "https://www.geeksforgeeks.org/data-structures/linked-list/")} · ${L("JS Linked Lists", "https://www.geeksforgeeks.org/implementation-linkedlist-javascript/")}`
+        ]
+      },
+      {
+        icon: "🥞", name: "2.4–2.6 Stacks, Queues & Hash Tables",
+        subs: [
+          `Stacks (LIFO, Expression Eval): ${L("Python Stacks", "https://www.geeksforgeeks.org/stack-in-python/")} · ${L("Java Stacks", "https://www.geeksforgeeks.org/stack-class-in-java/")} · ${L("C++ Stacks", "https://www.geeksforgeeks.org/stack-in-cpp-stl/")} · ${L("JS Stacks", "https://www.geeksforgeeks.org/implementation-stack-javascript/")}`,
+          `Queues (FIFO, Circular, Priority): ${L("Python Queues", "https://www.geeksforgeeks.org/queue-in-python/")} · ${L("Java Queues", "https://www.geeksforgeeks.org/queue-interface-java/")} · ${L("C++ Queues", "https://www.geeksforgeeks.org/queue-cpp-stl/")} · ${L("JS Queues", "https://www.geeksforgeeks.org/implementation-queue-javascript/")}`,
+          `Hash Tables (Chaining, Open Addressing): ${L("Python Hash Tables", "https://www.geeksforgeeks.org/hash-map-in-python/")} · ${L("Java HashMap", "https://www.geeksforgeeks.org/java-util-hashmap-in-java-with-examples/")} · ${L("C++ Unordered Map", "https://www.geeksforgeeks.org/unordered_map-in-cpp-stl/")} · ${L("JS Map & Hashing", "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map")}`
+        ]
+      },
+      {
+        icon: "🌳", name: "2.7–2.9 Trees, Graphs & Advanced Structures",
+        subs: [
+          `Trees (Binary, BST, AVL, Traversals): ${L("Python Trees", "https://www.geeksforgeeks.org/binary-tree-in-python/")} · ${L("Java Trees", "https://www.geeksforgeeks.org/binary-tree-data-structure/")} · ${L("C++ Trees", "https://www.geeksforgeeks.org/binary-tree-set-1-introduction/")} · ${L("JS Trees", "https://www.geeksforgeeks.org/implementation-binary-search-tree-javascript/")}`,
+          `Graphs (BFS, DFS, Dijkstra, Bellman-Ford, MST): ${L("Python Graphs", "https://www.geeksforgeeks.org/generate-graph-using-dictionary-python/")} · ${L("Java Graphs", "https://www.geeksforgeeks.org/graph-and-its-representations/")} · ${L("C++ Graphs", "https://www.geeksforgeeks.org/graph-implementation-using-stl-for-competitive-programming-set-1-dfs-of-unweighted-and-undirected/")} · ${L("JS Graphs", "https://www.geeksforgeeks.org/implementation-graph-javascript/")}`,
+          `Advanced Data Structures (Segment Trees, Fenwick Trees, Disjoint Set, Suffix Trees): ${L("GeeksforGeeks Advanced Data Structures", "https://www.geeksforgeeks.org/advanced-data-structures/")}`
+        ]
+      },
+      {
+        icon: "⚡", name: "3. Sorting, Searching & Graph Algorithms",
+        subs: [
+          `Sorting (Bubble, Merge, Insertion, Quick, Selection, Heap): ${L("Python Sorting", "https://www.geeksforgeeks.org/sorting-algorithms-in-python/")} · ${L("Java Sorting", "https://www.geeksforgeeks.org/sorting-in-java/")} · ${L("C++ Sorting", "https://www.geeksforgeeks.org/sorting-algorithms/")} · ${L("JS Sorting", "https://www.geeksforgeeks.org/sorting-algorithms-in-javascript/")}`,
+          `Searching (Linear & Binary Search): ${L("Python Searching", "https://www.geeksforgeeks.org/searching-algorithms/")} · ${L("Java Searching", "https://www.geeksforgeeks.org/searching-algorithms-in-java/")} · ${L("C++ Searching", "https://www.geeksforgeeks.org/searching-algorithms/")}`,
+          `Graph Algorithms (BFS, DFS, Shortest Path, Prim's, Kruskal's): ${L("GeeksforGeeks Graph Algorithms", "https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/")} · ${L("Shortest Path Algorithms", "https://www.geeksforgeeks.org/shortest-path-algorithms-with-examples/")} · ${L("Minimum Spanning Tree (MST)", "https://www.geeksforgeeks.org/minimum-spanning-tree-mst-complete-guide/")}`,
+          `Indexing & B/B+ Trees: ${L("GeeksforGeeks Indexing in DBMS", "https://www.geeksforgeeks.org/indexing-in-databases-set-1/")}`
+        ]
+      },
+      {
+        icon: "⏱️", name: "4–6. Complexity, Problem-Solving Patterns & Playlists",
+        subs: [
+          `Time & Space Complexity: ${L("Big-O Cheat Sheet", "https://www.bigocheatsheet.com/")} · ${L("GeeksforGeeks Time Complexity", "https://www.geeksforgeeks.org/understanding-time-complexity-simple-examples/")}`,
+          `Core Paradigms: ${L("Brute Force", "https://www.geeksforgeeks.org/brute-force-approach-and-its-pros-and-cons/")} · ${L("Divide and Conquer", "https://www.geeksforgeeks.org/divide-and-conquer/")} · ${L("Greedy Algorithms", "https://www.geeksforgeeks.org/greedy-algorithms/")}`,
+          `DP & Backtracking: ${L("GFG Dynamic Programming", "https://www.geeksforgeeks.org/dynamic-programming/")} (${L("LeetCode DP Tag", "https://leetcode.com/tag/dynamic-programming/")}) · ${L("GFG Backtracking", "https://www.geeksforgeeks.org/backtracking-algorithms/")} (${L("LeetCode Backtracking", "https://leetcode.com/tag/backtracking/")})`,
+          `Array/String Techniques: ${L("LeetCode Two Pointer Problems", "https://leetcode.com/tag/two-pointers/")} · ${L("LeetCode Sliding Window Problems", "https://leetcode.com/tag/sliding-window/")}`,
+          `DSA Language Playlists: ${YT("DSA with C++ (Striver A2Z)", "Striver A2Z DSA Course C++")} · ${YT("DSA with Java (Kunal Kushwaha / Apna College)", "DSA with Java complete playlist")} · ${YT("DSA with Python", "DSA with Python full course playlist")} · ${YT("DSA with JavaScript", "JavaScript Data Structures and Algorithms playlist")}`,
+          `Free Material & Drive: ${L("Complete Free DSA Material Drive", "https://drive.google.com/drive/folders/1Ay5CmkoRJ5eEGcFskULc3CHNQn5iCVs3")} · ${L("All DSA Resources in One Google Doc", "https://docs.google.com/document/d/1wT7H71M7CghUwB9zdFS0yp_uPccOhqWYFdf_PHPfEFI/edit")}`
+        ]
+      }
+    ]
+  },
+
+  {
+    num: "03",
+    section: "dsa",
+    title: "Most Asked DSA Coding Questions (200 Clickable Problems)",
+    tag: "articles/dsa · Top 200 Problems",
+    sourceUrl: "https://www.lets-code.co.in/articles/dsa/",
+    sourceLabel: "articles/dsa",
+    color: "#00e5ff",
+    colorBg: "rgba(0,229,255,0.08)",
+    topics: [
+      {
+        icon: "🔢", name: "1. Arrays (20 Must-Solve Problems)",
+        subs: [
+          `${LC("Two Sum", "two-sum")} · ${LC("Best Time to Buy and Sell Stock", "best-time-to-buy-and-sell-stock")} · ${LC("Rotate Array", "rotate-array")} · ${LC("Maximum Subarray (Kadane's)", "maximum-subarray")}`,
+          `${LC("Merge Intervals", "merge-intervals")} · ${LC("Product of Array Except Self", "product-of-array-except-self")} · ${LC("Find the Duplicate Number", "find-the-duplicate-number")} · ${LC("Set Matrix Zeroes", "set-matrix-zeroes")}`,
+          `${LC("Spiral Matrix", "spiral-matrix")} · ${LC("Next Permutation", "next-permutation")} · ${LC("3Sum", "3sum")} · ${LC("Container With Most Water", "container-with-most-water")}`,
+          `${LC("Trapping Rain Water", "trapping-rain-water")} · ${LC("Subarray Sum Equals K", "subarray-sum-equals-k")} · ${LC("Longest Consecutive Sequence", "longest-consecutive-sequence")} · ${LC("Find Minimum in Rotated Sorted Array", "find-minimum-in-rotated-sorted-array")}`,
+          `${LC("Search in Rotated Sorted Array", "search-in-rotated-sorted-array")} · ${LC("First Missing Positive", "first-missing-positive")} · ${L("Count Inversions in an Array", "https://www.geeksforgeeks.org/inversion-count-in-array-using-merge-sort/")} · ${LC("Sliding Window Maximum", "sliding-window-maximum")}`
+        ]
+      },
+      {
+        icon: "🔗", name: "2. Linked Lists (20 Must-Solve Problems)",
+        subs: [
+          `${LC("Reverse Linked List", "reverse-linked-list")} · ${LC("Linked List Cycle", "linked-list-cycle")} · ${LC("Merge Two Sorted Lists", "merge-two-sorted-lists")} · ${LC("Remove Nth Node From End", "remove-nth-node-from-end-of-list")}`,
+          `${LC("Intersection of Two Linked Lists", "intersection-of-two-linked-lists")} · ${LC("Palindrome Linked List", "palindrome-linked-list")} · ${LC("Add Two Numbers", "add-two-numbers")} · ${LC("Flatten a Multilevel Doubly Linked List", "flatten-a-multilevel-doubly-linked-list")}`,
+          `${LC("LRU Cache", "lru-cache")} · ${LC("Copy List with Random Pointer", "copy-list-with-random-pointer")} · ${LC("Rotate List", "rotate-list")} · ${LC("Remove Duplicates from Sorted List", "remove-duplicates-from-sorted-list")}`,
+          `${LC("Swap Nodes in Pairs", "swap-nodes-in-pairs")} · ${LC("Reverse Nodes in k-Group", "reverse-nodes-in-k-group")} · ${LC("Merge k Sorted Lists", "merge-k-sorted-lists")} · ${LC("Middle of the Linked List", "middle-of-the-linked-list")}`,
+          `${LC("Remove Linked List Elements", "remove-linked-list-elements")} · ${LC("Odd Even Linked List", "odd-even-linked-list")} · ${LC("Reorder List", "reorder-list")} · ${LC("Partition List", "partition-list")}`
+        ]
+      },
+      {
+        icon: "🥞", name: "3. Stacks & Queues (20 Must-Solve Problems)",
+        subs: [
+          `${LC("Valid Parentheses", "valid-parentheses")} · ${LC("Min Stack", "min-stack")} · ${LC("Implement Queue using Stacks", "implement-queue-using-stacks")} · ${LC("Implement Stack using Queues", "implement-stack-using-queues")}`,
+          `${LC("Next Greater Element I", "next-greater-element-i")} · ${LC("Largest Rectangle in Histogram", "largest-rectangle-in-histogram")} · ${LC("Sliding Window Maximum", "sliding-window-maximum")} · ${LC("Design Circular Queue", "design-circular-queue")}`,
+          `${LC("Evaluate Reverse Polish Notation", "evaluate-reverse-polish-notation")} · ${LC("Remove All Adjacent Duplicates In String", "remove-all-adjacent-duplicates-in-string")} · ${LC("Daily Temperatures", "daily-temperatures")} · ${LC("Simplify Path", "simplify-path")}`,
+          `${LC("Asteroid Collision", "asteroid-collision")} · ${LC("Design a Stack With Increment Operation", "design-a-stack-with-increment-operation")} · ${LC("Decode String", "decode-string")} · ${LC("Basic Calculator", "basic-calculator")}`,
+          `${LC("Maximum Frequency Stack", "maximum-frequency-stack")} · ${LC("Design Hit Counter", "design-hit-counter")} · ${LC("Minimum Add to Make Parentheses Valid", "minimum-add-to-make-parentheses-valid")} · ${LC("Validate Stack Sequences", "validate-stack-sequences")}`
+        ]
+      },
+      {
+        icon: "🌲", name: "4. Trees (20 Must-Solve Problems)",
+        subs: [
+          `${LC("Maximum Depth of Binary Tree", "maximum-depth-of-binary-tree")} · ${LC("Validate Binary Search Tree", "validate-binary-search-tree")} · ${LC("Invert Binary Tree", "invert-binary-tree")} · ${LC("Binary Tree Level Order Traversal", "binary-tree-level-order-traversal")}`,
+          `${LC("Lowest Common Ancestor of a Binary Tree", "lowest-common-ancestor-of-a-binary-tree")} · ${LC("Serialize and Deserialize Binary Tree", "serialize-and-deserialize-binary-tree")} · ${LC("Construct Binary Tree from Preorder and Inorder", "construct-binary-tree-from-preorder-and-inorder-traversal")} · ${LC("Diameter of Binary Tree", "diameter-of-binary-tree")}`,
+          `${LC("Symmetric Tree", "symmetric-tree")} · ${LC("Balanced Binary Tree", "balanced-binary-tree")} · ${LC("Binary Tree Zigzag Level Order Traversal", "binary-tree-zigzag-level-order-traversal")} · ${LC("Path Sum", "path-sum")}`,
+          `${LC("Flatten Binary Tree to Linked List", "flatten-binary-tree-to-linked-list")} · ${LC("Populating Next Right Pointers in Each Node", "populating-next-right-pointers-in-each-node")} · ${LC("Count Complete Tree Nodes", "count-complete-tree-nodes")} · ${LC("Kth Smallest Element in a BST", "kth-smallest-element-in-a-bst")}`,
+          `${LC("Binary Tree Maximum Path Sum", "binary-tree-maximum-path-sum")} · ${LC("Sum Root to Leaf Numbers", "sum-root-to-leaf-numbers")} · ${LC("Subtree of Another Tree", "subtree-of-another-tree")} · ${LC("Vertical Order Traversal of a Binary Tree", "vertical-order-traversal-of-a-binary-tree")}`
+        ]
+      },
+      {
+        icon: "🕸️", name: "5. Graphs (20 Must-Solve Problems)",
+        subs: [
+          `${LC("Number of Islands", "number-of-islands")} · ${LC("Clone Graph", "clone-graph")} · ${LC("Course Schedule", "course-schedule")} · ${LC("Word Ladder", "word-ladder")}`,
+          `${L("Minimum Spanning Tree (Prim's/Kruskal's)", "https://www.geeksforgeeks.org/kruskals-minimum-spanning-tree-algorithm-greedy-algo-2/")} · ${L("Dijkstra's Shortest Path", "https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/")} · ${L("Topological Sort", "https://www.geeksforgeeks.org/topological-sorting/")} · ${LC("Alien Dictionary", "alien-dictionary")}`,
+          `${LC("Graph Valid Tree", "graph-valid-tree")} · ${LC("Network Delay Time", "network-delay-time")} · ${LC("Cheapest Flights Within K Stops", "cheapest-flights-within-k-stops")} · ${LC("Reconstruct Itinerary", "reconstruct-itinerary")}`,
+          `${LC("Evaluate Division", "evaluate-division")} · ${LC("Redundant Connection", "redundant-connection")} · ${LC("Walls and Gates", "walls-and-gates")} · ${LC("Word Search", "word-search")}`,
+          `${LC("Surrounded Regions", "surrounded-regions")} · ${LC("Pacific Atlantic Water Flow", "pacific-atlantic-water-flow")} · ${LC("Snakes and Ladders", "snakes-and-ladders")} · ${LC("Critical Connections in a Network", "critical-connections-in-a-network")}`
+        ]
+      },
+      {
+        icon: "🔑", name: "6. Hashing & 7. Dynamic Programming (40 Problems)",
+        subs: [
+          `Hashing: ${LC("Two Sum", "two-sum")} · ${LC("Longest Substring Without Repeating Characters", "longest-substring-without-repeating-characters")} · ${LC("Group Anagrams", "group-anagrams")} · ${LC("Subarray Sum Equals K", "subarray-sum-equals-k")} · ${LC("First Unique Character", "first-unique-character-in-a-string")} · ${LC("Longest Palindrome", "longest-palindrome")}`,
+          `Hashing II: ${LC("Contains Duplicate", "contains-duplicate")} · ${LC("Design HashMap", "design-hashmap")} · ${LC("Design HashSet", "design-hashset")} · ${LC("Count Primes", "count-primes")} · ${LC("Insert Delete GetRandom O(1)", "insert-delete-getrandom-o1")} · ${LC("Minimum Window Substring", "minimum-window-substring")} · ${LC("Top K Frequent Elements", "top-k-frequent-elements")}`,
+          `DP I: ${LC("Climbing Stairs", "climbing-stairs")} · ${LC("Longest Increasing Subsequence", "longest-increasing-subsequence")} · ${LC("Coin Change", "coin-change")} · ${LC("Edit Distance", "edit-distance")} · ${LC("Maximum Subarray", "maximum-subarray")} · ${L("0/1 Knapsack", "https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/")} · ${LC("Longest Common Subsequence", "longest-common-subsequence")}`,
+          `DP II: ${LC("Word Break", "word-break")} · ${LC("Unique Paths", "unique-paths")} · ${LC("House Robber", "house-robber")} · ${LC("Decode Ways", "decode-ways")} · ${LC("Palindrome Partitioning", "palindrome-partitioning")} · ${LC("Minimum Path Sum", "minimum-path-sum")} · ${LC("Burst Balloons", "burst-balloons")} · ${LC("Partition Equal Subset Sum", "partition-equal-subset-sum")} · ${LC("Regular Expression Matching", "regular-expression-matching")}`
+        ]
+      },
+      {
+        icon: "🧬", name: "8. Strings, 9. Bit Manipulation & 10. Advanced DS (60 Problems)",
+        subs: [
+          `Strings: ${LC("Longest Palindromic Substring", "longest-palindromic-substring")} · ${LC("Valid Palindrome", "valid-palindrome")} · ${LC("Longest Common Prefix", "longest-common-prefix")} · ${LC("Valid Anagram", "valid-anagram")} · ${LC("Find the Index of the First Occurrence (KMP)", "find-the-index-of-the-first-occurrence-in-a-string")} · ${LC("Reverse Words in a String", "reverse-words-in-a-string")} · ${LC("String to Integer (atoi)", "string-to-integer-atoi")} · ${LC("Restore IP Addresses", "restore-ip-addresses")}`,
+          `Bit Manipulation: ${LC("Single Number", "single-number")} · ${LC("Number of 1 Bits", "number-of-1-bits")} · ${LC("Reverse Bits", "reverse-bits")} · ${LC("Missing Number", "missing-number")} · ${LC("Power of Two", "power-of-two")} · ${LC("Sum of Two Integers", "sum-of-two-integers")} · ${LC("Counting Bits", "counting-bits")} · ${LC("Maximum XOR of Two Numbers", "maximum-xor-of-two-numbers-in-an-array")}`,
+          `Advanced DS: ${LC("Implement Trie (Prefix Tree)", "implement-trie-prefix-tree")} · ${LC("Design Add and Search Words", "design-add-and-search-words-data-structure")} · ${LC("Word Search II", "word-search-ii")} · ${LC("Kth Largest Element in a Stream", "kth-largest-element-in-a-stream")} · ${LC("Median of Two Sorted Arrays", "median-of-two-sorted-arrays")}`,
+          `System/DS Design: ${LC("Design Skiplist", "design-skiplist")} · ${LC("Range Sum Query - Mutable (Segment Tree)", "range-sum-query-mutable")} · ${LC("Count of Smaller Numbers After Self (Fenwick)", "count-of-smaller-numbers-after-self")} · ${LC("Design Browser History", "design-browser-history")} · ${LC("Design Twitter", "design-twitter")}`,
+          `Theoretical Questions Bank: ${L("Arrays, Strings, Linked Lists, Trees, Graphs, DP & Bit Manipulation Theory Q&As", "https://www.lets-code.co.in/articles/dsa/")}`
+        ]
+      }
+    ]
+  },
+
+  // =========================================================================
+  // SECTION 3: A TO Z PLACEMENT KIT (lets-code.co.in/articles/AtoZ-Placement-Kit/)
+  // =========================================================================
+  {
+    num: "04",
+    section: "atoz",
+    title: "A to Z Placement Kit: 1️⃣ Build Your Core Skills",
+    tag: "AtoZ-Placement-Kit · Part 1",
+    sourceUrl: "https://www.lets-code.co.in/articles/AtoZ-Placement-Kit/",
+    sourceLabel: "articles/AtoZ-Placement-Kit",
+    color: "#f59e0b",
+    colorBg: "rgba(245,158,11,0.08)",
+    topics: [
+      {
+        icon: "💻", name: "Technical Foundations & Coding Platforms",
+        subs: [
+          `Core Guide: ${L("DSA, Aptitude, CS Fundamentals & System Design Roadmap", "https://www.lets-code.co.in/articles/placement/")}`,
+          `Practice Platforms: ${L("LeetCode", "https://leetcode.com/")} · ${L("GeeksforGeeks", "https://www.geeksforgeeks.org/")} · ${L("HackerRank", "https://www.hackerrank.com/")}`,
+          `Competitive Programming: ${L("CodeChef", "https://www.codechef.com/")} · ${L("Codeforces", "https://codeforces.com/")}`,
+          `Curated Interview Prep: ${L("InterviewBit", "https://www.interviewbit.com/")} · ${L("NeetCode.io (Curated Problems + Video Solutions)", "https://neetcode.io/")}`
+        ]
+      },
+      {
+        icon: "🎓", name: "Hard Skills, Courses & University OpenCourseWare",
+        subs: [
+          `Structured Career Paths: ${L("Let's Code 29+ Developer Roadmaps", "https://www.lets-code.co.in/articles/roadmap/")}`,
+          `Interactive Full-Stack: ${L("freeCodeCamp", "https://www.freecodecamp.org/")} · ${L("The Odin Project", "https://www.theodinproject.com/")} · ${L("Codecademy", "https://www.codecademy.com/")}`,
+          `University Courses: ${L("CS50 – Harvard Intro to CS", "https://cs50.harvard.edu/x/")} · ${L("MIT OpenCourseWare", "https://ocw.mit.edu/")}`,
+          `MOOCs & Foundations: ${L("Coursera", "https://www.coursera.org/")} · ${L("edX", "https://www.edx.org/")} · ${L("Khan Academy Computing", "https://www.khanacademy.org/computing")}`
+        ]
+      },
+      {
+        icon: "🗣️", name: "Soft Skills & Communication Mastery",
+        subs: [
+          `Spoken English & Workplace: ${YT("Learn English with Alex (YouTube)", "Learn English with Alex communication skills")} · ${YT("Skillopedia Communication Skills", "Skillopedia improve communication skills")}`,
+          `Confidence & Non-Verbal: ${YT("Self Confidence & Body Language – Practical Psychology", "Practical Psychology self confidence body language")} · ${YT("7 Cs of Communication", "7 Cs of Communication")} · ${L("Let's Code Soft Skills Guide", "https://www.lets-code.co.in/articles/roadmap/")}`,
+          `Public Speaking & Leadership: ${L("TED Talks", "https://www.ted.com/talks")} · ${L("Toastmasters Public Speaking Resources", "https://www.toastmasters.org/resources")}`,
+          `Management & Growth: ${L("MindTools Free Articles", "https://www.mindtools.com/")} · ${L("Harvard Business Review (HBR)", "https://hbr.org/")}`
+        ]
+      },
+      {
+        icon: "🛠️", name: "Technical Tools, Market Research & Productivity",
+        subs: [
+          `Dev & Cloud Tools: ${L("Git & GitHub Docs", "https://docs.github.com/en/get-started")} · ${L("Docker Docs", "https://docs.docker.com/get-started/")} · ${L("AWS Free Tier", "https://aws.amazon.com/free/")} · ${L("Google Cloud Skills Boost", "https://www.cloudskillsboost.google/")} · ${L("Microsoft Learn", "https://learn.microsoft.com/")} · ${L("Postman Learning Center", "https://learning.postman.com/")} · ${L("VS Code Tips & Tricks", "https://code.visualstudio.com/docs/getstarted/tips-and-tricks")}`,
+          `Market Intelligence: ${L("Glassdoor Reviews & Salaries", "https://www.glassdoor.co.in/")} · ${L("Crunchbase", "https://www.crunchbase.com/")} · ${L("Wellfound (AngelList)", "https://wellfound.com/")} · ${L("Let's Code Startups Directory", "https://www.lets-code.co.in/startups-list/")}`,
+          `Time Management & Focus: ${L("Todoist Productivity Methods", "https://todoist.com/productivity-methods")} · ${L("Notion", "https://www.notion.so/")} · ${L("Trello", "https://trello.com/")} · ${L("RescueTime", "https://www.rescuetime.com/")} · ${L("Forest Focus App", "https://www.forestapp.cc/")}`
+        ]
+      }
+    ]
+  },
+
+  {
+    num: "05",
+    section: "atoz",
+    title: "A to Z Placement Kit: 2️⃣ Profile, 3️⃣ Resume & 4️⃣ Job Search",
+    tag: "AtoZ-Placement-Kit · Parts 2–4",
+    sourceUrl: "https://www.lets-code.co.in/articles/AtoZ-Placement-Kit/",
+    sourceLabel: "articles/AtoZ-Placement-Kit",
+    color: "#f59e0b",
+    colorBg: "rgba(245,158,11,0.08)",
+    topics: [
+      {
+        icon: "🌟", name: "2️⃣ Projects, Certifications & Portfolio Hosting",
+        subs: [
+          `Projects & Perks: ${L("Let's Code Project Ideas", "https://www.lets-code.co.in/articles/finalyearprojects/")} · ${L("GitHub Student Developer Pack", "https://education.github.com/pack")} · ${L("Dev.to", "https://dev.to/")} · ${L("CodePen", "https://codepen.io/")} · ${L("Replit", "https://replit.com/")} · ${L("Behance", "https://www.behance.net/")} · ${L("Dribbble", "https://dribbble.com/")}`,
+          `Certifications: ${L("Google Career Certificates", "https://grow.google/certificates/")} · ${L("Microsoft Certifications", "https://learn.microsoft.com/en-us/credentials/")} · ${L("AWS Certifications", "https://aws.amazon.com/certification/")} · ${L("Cisco Networking Academy", "https://www.netacad.com/")} · ${L("Oracle Academy", "https://academy.oracle.com/")} · ${L("IBM SkillsBuild", "https://skillsbuild.org/")} · ${L("Red Hat Academy", "https://www.redhat.com/en/services/training-and-certification")}`,
+          `Portfolio Inspiration & Hosting: ${L("Avinash Singh Portfolio Repo (GitHub)", "https://github.com/avinash201199")} · ${L("GitHub Pages", "https://pages.github.com/")} · ${L("Vercel", "https://vercel.com/")} · ${L("Netlify", "https://www.netlify.com/")} · ${L("Carrd", "https://carrd.co/")}`,
+          `Communities & Networking: ${L("Let's Code Community", "https://www.lets-code.co.in/feed/")} · ${L("LinkedIn Optimizer", "https://www.lets-code.co.in/dashboard/")} · ${L("Meetup", "https://www.meetup.com/")} · ${L("Eventbrite", "https://www.eventbrite.com/")}`
+        ]
+      },
+      {
+        icon: "📄", name: "3️⃣ Application Materials: Resume & Cold Emails",
+        subs: [
+          `Resume Builders & Templates: ${L("Let's Code AI Resume Optimizer", "https://www.lets-code.co.in/dashboard/")} · ${L("6 Free ATS-Friendly Resume Templates", "https://www.lets-code.co.in/articles/resume/")} · ${L("Microsoft Create Resume Templates", "https://create.microsoft.com/en-us/resumes")} · ${L("Canva Resume Builder", "https://www.canva.com/resumes/templates/")} · ${L("Harvard OCS Resume Guide", "https://ocs.fas.harvard.edu/resumes-cvs-cover-letters")}`,
+          `Cover Letters & Cold Emails: ${L("Cold Email & Referral Templates – Let's Code", "https://www.lets-code.co.in/articles/coldemailtemplates/")} · ${L("Let's Code AI Cover Letter Generator", "https://www.lets-code.co.in/dashboard/")}`,
+          `Writing Polish: ${L("Grammarly", "https://www.grammarly.com/")} · ${L("Hemingway Editor", "https://hemingwayapp.com/")}`
+        ]
+      },
+      {
+        icon: "🔍", name: "4️⃣ Job Search Platforms & Startup Ecosystems",
+        subs: [
+          `Startup Directories: ${L("Let's Code 3000+ Startups List", "https://www.lets-code.co.in/startups-list/")} · ${L("Top Hiring Companies Hub", "https://www.lets-code.co.in/top-hiring-companies/")} · ${L("Wellfound (AngelList)", "https://wellfound.com/jobs")} · ${L("Y Combinator Jobs", "https://www.workatastartup.com/")} · ${L("Product Hunt Jobs", "https://www.producthunt.com/jobs")} · ${L("F6S Startup Jobs", "https://www.f6s.com/jobs")} · ${L("The Muse", "https://www.themuse.com/")}`,
+          `Major Job Boards: ${L("LinkedIn Jobs", "https://www.linkedin.com/jobs/")} · ${L("Naukri.com", "https://www.naukri.com/")} · ${L("Indeed", "https://in.indeed.com/")} · ${L("Glassdoor Jobs", "https://www.glassdoor.co.in/Job/")} · ${L("Foundit (Monster)", "https://www.foundit.in/")} · ${L("Dice Tech Jobs", "https://www.dice.com/")}`,
+          `Remote Job Boards: ${L("RemoteOK", "https://remoteok.com/")} · ${L("We Work Remotely", "https://weworkremotely.com/")} · ${L("Top 100+ Remote Hiring Companies Worldwide", "https://www.lets-code.co.in/blogs/top-100-remote-hiring-companies-worldwide-in-2026/")}`,
+          `Job Application Tracking: ${L("Let's Code Job Tracker", "https://www.lets-code.co.in/dashboard/")} · ${L("Huntr.co", "https://huntr.co/")} · ${L("Airtable Templates", "https://www.airtable.com/templates")}`
+        ]
+      },
+      {
+        icon: "🏆", name: "5️⃣ Interview Prep, Salary Negotiation & Bonus Channels",
+        subs: [
+          `Interview Handbooks: ${L("Tech Interview Handbook", "https://www.techinterviewhandbook.org/")} · ${L("System Design Primer (GitHub)", "https://github.com/donnemartin/system-design-primer")} · ${L("Let's Code Interview Q&As", "https://www.lets-code.co.in/interview/interviewquestions/")} · ${L("Company Preparation Guides", "https://www.lets-code.co.in/prepare/")}`,
+          `Mock Interviews: ${L("Let's Code AI Mock Interview", "https://www.lets-code.co.in/dashboard/")} · ${L("Pramp (Free Peer Mocks)", "https://www.pramp.com/")} · ${L("Interviewing.io", "https://interviewing.io/")} · ${L("LeetCode Assessment", "https://leetcode.com/assessment/")}`,
+          `Salary Negotiation & Internships: ${L("Levels.fyi Salary Benchmarking", "https://www.levels.fyi/")} · ${L("PayScale", "https://www.payscale.com/")} · ${L("Glassdoor Salaries", "https://www.glassdoor.co.in/Salaries/")} · ${L("Internshala", "https://internshala.com/")} · ${L("Forage Virtual Internships", "https://www.theforage.com/")}`,
+          `Top Placement YouTube Channels: ${L("Striver (takeUforward)", "https://www.youtube.com/@takeUforward")} · ${L("Apna College", "https://www.youtube.com/@ApnaCollegeOfficial")} · ${L("CodeWithHarry", "https://www.youtube.com/@CodeWithHarry")} · ${L("Gaurav Sen", "https://www.youtube.com/@gkcs")} · ${L("Love Babbar", "https://www.youtube.com/@CodeHelp")} · ${L("Kunal Kushwaha", "https://www.youtube.com/@KunalKushwaha")} · ${L("Jenny's Lectures", "https://www.youtube.com/@JennyslecturesCSIT")} · ${L("Abdul Bari", "https://www.youtube.com/@abdul_bari")} · ${L("freeCodeCamp", "https://www.youtube.com/@freecodecamp")}`,
+          `Essential Books: ${L("Free Programming Books (GitHub)", "https://github.com/EbookFoundation/free-programming-books")} · ${L("Technical Books Google Drive Folder", "https://drive.google.com/drive/u/0/folders/0B_Wr3rZKpxDuQXRRZklOSERkX1E?resourcekey=0-YU41QVt-nVvRzQqiONiBag")}`
+        ]
+      }
+    ]
+  },
+
+  // =========================================================================
+  // SECTION 4: AWESOME YOUTUBE PLAYLISTS (lets-code.co.in/articles/Awesome-Youtube-Playlists/)
+  // =========================================================================
+  {
+    num: "06",
+    section: "youtube",
+    title: "Awesome YouTube Playlists: AI, Programming, Cloud & Data",
+    tag: "Awesome-Youtube-Playlists · Part 1",
+    sourceUrl: "https://www.lets-code.co.in/articles/Awesome-Youtube-Playlists/",
+    sourceLabel: "articles/Awesome-Youtube-Playlists",
+    color: "#ec4899",
+    colorBg: "rgba(236,72,153,0.08)",
+    topics: [
+      {
+        icon: "🤖", name: "AI & Machine Learning (19 Playlists)",
+        subs: [
+          `${YT("AI Agents", "AI Agents tutorial playlist")} · ${YT("Artificial Intelligence", "Artificial Intelligence complete course playlist")} · ${YT("Agentic AI", "Agentic AI course playlist")} · ${YT("AI Based Automation", "AI Automation tutorial playlist")}`,
+          `${YT("AI for Beginners", "AI for Beginners playlist")} · ${YT("MLOps", "MLOps tutorial playlist")} · ${YT("AI Basic to Advanced", "AI Basic to Advanced course playlist")} · ${YT("Full End to End Machine Learning in Python", "End to End Machine Learning in Python playlist")}`,
+          `${YT("Mathematics for Machine Learning", "Mathematics for Machine Learning playlist")} · ${YT("Machine Learning Operations (MLOps)", "Machine Learning Operations MLOps playlist")} · ${YT("A.I. Engineering", "AI Engineering playlist")} · ${YT("AI Engineer Basics", "AI Engineer roadmap playlist")}`,
+          `${YT("Large Language Models (LLMs)", "Large Language Models LLMs playlist")} · ${YT("Stable Diffusion and AI Art", "Stable Diffusion tutorial playlist")} · ${YT("ChatGPT and Prompt Engineering", "ChatGPT and Prompt Engineering playlist")} · ${YT("Computer Vision with OpenCV", "Computer Vision OpenCV Python playlist")}`,
+          `${YT("Natural Language Processing Advanced", "Natural Language Processing NLP playlist")} · ${YT("Reinforcement Learning Deep Dive", "Reinforcement Learning course playlist")} · ${YT("AI Model Deployment", "Machine Learning Model Deployment playlist")} · ${YT("AI Ethics and Responsible AI", "AI Ethics and Responsible AI")} · ${YT("GenAI with JS", "Generative AI with JavaScript playlist")}`
+        ]
+      },
+      {
+        icon: "💻", name: "Programming & Software Engineering (36 Playlists)",
+        subs: [
+          `${YT("Backend in Python", "Backend Development in Python playlist")} · ${YT("Java Spring Boot", "Java Spring Boot full course playlist")} · ${YT("Java Backend Development", "Java Backend Development playlist")} · ${YT("Spring Boot", "Spring Boot tutorial playlist")} · ${YT("Hibernate", "Hibernate Java tutorial playlist")}`,
+          `${YT("Data Structures and Algorithms in Java", "Data Structures and Algorithms in Java playlist")} · ${YT("DSA with Python", "DSA with Python playlist")} · ${YT("DSA in JS", "DSA in JavaScript playlist")} · ${YT("Advanced DSA", "Advanced Data Structures and Algorithms playlist")} · ${YT("DSA Algorithms", "DSA Algorithms playlist")}`,
+          `${YT("System Design (HLD + LLD)", "System Design HLD LLD playlist")} · ${YT("System Design and Kafka", "System Design and Apache Kafka playlist")} · ${YT("Kafka Connect", "Kafka Connect tutorial playlist")} · ${YT("Microservices Architecture", "Microservices Architecture playlist")}`,
+          `${YT("Go Programming", "Golang tutorial playlist")} · ${YT("Rust Programming Language", "Rust programming tutorial playlist")} · ${YT("C#/ASP.NET", "C# ASP.NET Core playlist")} · ${YT(".Net Web API", ".NET Web API tutorial playlist")} · ${YT("C++ for Game Development", "C++ for Game Development playlist")}`,
+          `${YT("TypeScript Advanced Patterns", "TypeScript Advanced tutorial playlist")} · ${YT("GraphQL Complete Guide", "GraphQL complete course playlist")} · ${YT("API Development with FastAPI", "FastAPI Python tutorial playlist")} · ${YT("Design Patterns in Software Engineering", "Design Patterns in Software Engineering playlist")}`,
+          `${YT("Clean Code and Best Practices", "Clean Code best practices playlist")} · ${YT("Functional Programming Concepts", "Functional Programming playlist")} · ${YT("Python Vibe Coding", "Python Vibe Coding")} · ${YT("Blockchain, Solidity & Web3", "Solidity Blockchain Web3 playlist")} · ${YT("ServiceNow Developer", "ServiceNow Developer playlist")} · ${YT("Quantum Computing", "Quantum Computing course playlist")} · ${YT("AR/VR Courses", "AR VR Development playlist")} · ${YT("PCB Design", "PCB Design tutorial playlist")}`
+        ]
+      },
+      {
+        icon: "☁️", name: "Cloud & DevOps (14 Playlists)",
+        subs: [
+          `${YT("DevOps End to End Project", "DevOps End to End Project playlist")} · ${YT("CI/CD DevOps", "CI CD DevOps pipeline playlist")} · ${YT("MLOps and DevOps", "MLOps and DevOps playlist")}`,
+          `${YT("AWS and Docker", "AWS and Docker tutorial playlist")} · ${YT("Kubernetes Advanced Concepts", "Kubernetes complete course playlist")} · ${YT("Google Cloud Platform (GCP)", "Google Cloud Platform GCP playlist")} · ${YT("Azure Data Engineer Associate", "Azure Data Engineer Associate DP-203 playlist")}`,
+          `${YT("Terraform (IaC) Infrastructure", "Terraform Infrastructure as Code playlist")} · ${YT("Infrastructure as Code Patterns", "Infrastructure as Code tutorial playlist")} · ${YT("GitOps and Flux", "GitOps and Flux Kubernetes playlist")}`,
+          `${YT("Site Reliability Engineering (SRE)", "Site Reliability Engineering SRE playlist")} · ${YT("Monitoring with Prometheus & Grafana", "Prometheus and Grafana monitoring playlist")} · ${YT("Serverless Architecture", "Serverless Architecture AWS playlist")} · ${YT("Cloud Cost Optimization", "Cloud Cost Optimization FinOps")}`
+        ]
+      },
+      {
+        icon: "📊", name: "Data Science & Analytics (11 Playlists)",
+        subs: [
+          `${YT("SQL DBMS", "SQL and DBMS full course playlist")} · ${YT("Data Analysis Pandas and NumPy", "Data Analysis with Pandas and NumPy playlist")}`,
+          `${YT("Tableau", "Tableau complete tutorial playlist")} · ${YT("Power BI Advanced Techniques", "Power BI Advanced tutorial playlist")} · ${YT("Advanced Data Visualization with D3.js", "D3.js Data Visualization playlist")}`,
+          `${YT("Apache Spark for Big Data", "Apache Spark PySpark tutorial playlist")} · ${YT("Data Engineering Fundamentals", "Data Engineering course playlist")}`,
+          `${YT("Time Series Analysis", "Time Series Analysis Python playlist")} · ${YT("Statistical Learning", "Statistical Learning course playlist")} · ${YT("A/B Testing and Experimentation", "A/B Testing Data Science playlist")}`
+        ]
+      },
+      {
+        icon: "🌐", name: "Web & Mobile Development (27 Playlists)",
+        subs: [
+          `Web Dev: ${YT("Frontend Development", "Frontend Web Development playlist")} · ${YT("React", "React JS full course playlist")} · ${YT("Next.js 14 App Router", "Next.js 14 App Router playlist")} · ${YT("Node JS", "Node.js backend tutorial playlist")}`,
+          `Modern Frameworks: ${YT("Vue.js 3 Composition API", "Vue 3 Composition API playlist")} · ${YT("Svelte and SvelteKit", "Svelte and SvelteKit tutorial playlist")} · ${YT("Astro Static Site Generator", "Astro web framework playlist")} · ${YT("Tailwind CSS Mastery", "Tailwind CSS course playlist")}`,
+          `Design & Web Perf: ${YT("Framer", "Framer website tutorial playlist")} · ${YT("Webflow", "Webflow course playlist")} · ${YT("Frontend UI/UX for Beginners", "UI UX Design for Beginners playlist")} · ${YT("Progressive Web Apps (PWA)", "Progressive Web Apps PWA playlist")} · ${YT("Web Accessibility (a11y)", "Web Accessibility a11y playlist")} · ${YT("Web Performance Optimization", "Web Performance Optimization playlist")}`,
+          `Mobile Dev: ${YT("Flutter Complete Course", "Flutter complete course playlist")} · ${YT("Android Development with Kotlin", "Android Development Kotlin playlist")} · ${YT("Jetpack Compose for Android", "Jetpack Compose Android playlist")} · ${YT("iOS Development with Swift", "iOS Swift development playlist")} · ${YT("SwiftUI Masterclass", "SwiftUI Masterclass playlist")} · ${YT("React Native Advanced", "React Native course playlist")} · ${YT("Mobile UI/UX Design Patterns", "Mobile UI UX Design playlist")} · ${YT("Mobile App Testing & QA", "Mobile App Testing QA playlist")} · ${YT("Cross-Platform Development", "Cross Platform Mobile Development")} · ${YT("Mobile Performance Optimization", "Mobile App Performance Optimization")}`
+        ]
+      },
+      {
+        icon: "🛡️", name: "Cybersecurity, Web3, IoT, Game Dev & More (80+ Playlists)",
+        subs: [
+          `Cybersecurity: ${YT("Cybersecurity Fundamentals", "Cybersecurity full course playlist")} · ${YT("Ethical Hacking Certification", "Ethical Hacking course playlist")} · ${YT("Penetration Testing Tools", "Penetration Testing tools playlist")} · ${YT("Network Security Fundamentals", "Network Security playlist")} · ${YT("OWASP Top 10 Vulnerabilities", "OWASP Top 10 explained playlist")} · ${YT("Bug Bounty Hunting", "Bug Bounty Hunting playlist")} · ${YT("AWS & Azure Cloud Security", "Cloud Security AWS Azure playlist")} · ${YT("Malware Analysis & Digital Forensics", "Malware Analysis Digital Forensics playlist")} · ${YT("Hardware Security & SystemVerilog", "Hardware Security SystemVerilog playlist")}`,
+          `Blockchain & Web3: ${YT("Ethereum Smart Contract Development", "Ethereum Smart Contract Solidity playlist")} · ${YT("DeFi Development Fundamentals", "DeFi Development playlist")} · ${YT("NFT Creation & Smart Contracts", "NFT Smart Contracts playlist")} · ${YT("Web3.js and Ethers.js", "Web3.js Ethers.js playlist")} · ${YT("Blockchain Security Best Practices", "Smart Contract Auditing Security playlist")} · ${YT("Polygon & Layer 2 Solutions", "Polygon Layer 2 blockchain playlist")} · ${YT("DAO Development", "DAO Development Web3")}`,
+          `IoT, Robotics & Games: ${YT("Arduino Projects for Beginners", "Arduino tutorial playlist")} · ${YT("Raspberry Pi Complete Course", "Raspberry Pi course playlist")} · ${YT("ESP32 & ESP8266 IoT Projects", "ESP32 IoT projects playlist")} · ${YT("ROS Robot Operating System", "ROS Robot Operating System playlist")} · ${YT("Computer Vision for Robotics", "Computer Vision for Robotics")} · ${YT("Unity Game Development Basics", "Unity Game Development playlist")} · ${YT("Unreal Engine 5 Complete Course", "Unreal Engine 5 tutorial playlist")} · ${YT("Godot Engine Tutorial Series", "Godot Engine tutorial playlist")} · ${YT("3D Modeling with Blender", "Blender 3D modeling for games playlist")}`,
+          `Design, Business & Personal Growth: ${YT("Figma Advanced Prototyping", "Figma UI UX tutorial playlist")} · ${YT("UI/UX Design Systems", "UI UX Design Systems playlist")} · ${YT("Product Management", "Product Management course playlist")} · ${YT("Financial Modeling in Excel", "Financial Modeling in Excel playlist")} · ${YT("Agile and Scrum Methodologies", "Agile and Scrum Master playlist")} · ${YT("Communication Skills & Public Speaking", "Communication Skills Public Speaking playlist")} · ${YT("Linear Algebra & Calculus", "Essence of Linear Algebra and Calculus 3Blue1Brown")}`,
+          `Also Explore: ${L("Awesome GitHub Repositories – Let's Code", "https://www.lets-code.co.in/articles/Awesome-Github-Repositories/")}`
+        ]
+      }
+    ]
+  },
+
+  // =========================================================================
+  // SECTION 5: STUDY RESOURCES, GOOGLE DRIVE LINKS & STARTUP DATABASES
+  // =========================================================================
+  {
+    num: "07",
+    section: "resources",
+    title: "Study Resources, Google Drive Folders & Startup Databases",
+    tag: "Resources & Drive Hub",
+    sourceUrl: "https://www.lets-code.co.in/articles/free-placement-google-drive-links/",
+    sourceLabel: "articles/free-placement-google-drive-links",
+    color: "#10b981",
+    colorBg: "rgba(16,185,129,0.08)",
+    topics: [
+      {
+        icon: "📁", name: "10 Official Placement Google Drive Folders",
+        subs: [
+          `1. ${L("DSA in C, C++, Java & Python (Google Drive)", "https://drive.google.com/drive/folders/1Ay5CmkoRJ5eEGcFskULc3CHNQn5iCVs3")}`,
+          `2. ${L("Advanced DSA Notes & Problems (Google Drive)", "https://drive.google.com/drive/folders/1Da_v5uHIvBscWcRRgMsYGq-hJ00dQL9Y")}`,
+          `3. ${L("CS Fundamentals: OS, CN, SE (Google Drive)", "https://drive.google.com/drive/u/1/folders/18FBvExqEtt9mtNKKP65f_ETdtS7nCG1G")}`,
+          `4. ${L("DBMS & SQL Study Materials (Google Drive)", "https://drive.google.com/drive/folders/1f5dmqV84E-BN1PiVWqUhNXzcVWkCbGPa")}`,
+          `5. ${L("Aptitude, Logical & Verbal Materials (Google Drive)", "https://drive.google.com/drive/folders/1XmI6Iq_0MXJ6vq6Nkk-DcBK_y_LWNLCM")}`,
+          `6. ${L("Company-Specific Placement Papers: TCS, Wipro, Infosys, Accenture (Google Drive)", "https://drive.google.com/drive/folders/1V5-NWPj1JhfBBf6wpU4rV7Ebar2ShSi5")}`,
+          `7. ${L("Off-Campus Placement Strategy & Guides (Google Drive)", "https://drive.google.com/drive/u/0/folders/1iKiq-ZbI3dTN0igO8xRnyaWJF_RCf2Ym")}`,
+          `8. ${L("AI, ML & Data Science Complete Collection (Google Drive)", "https://drive.google.com/drive/folders/1eAYEvcnd66wMYQqNXDihIdFwZx5vdLFc")} · ${L("Mega DS Toolbox", "https://drive.google.com/drive/folders/1CgN7DE3pNRNh_4BA_zrrMLqWz6KquwuD")}`,
+          `9. ${L("Cloud Computing Materials (Google Drive)", "https://drive.google.com/drive/folders/1_iB9UnsVlOWvdjKVmtC7b8b26L2ORdVR")}`,
+          `10. ${L("Business Analysis, Data Analytics & PM (Google Drive)", "https://drive.google.com/drive/u/0/folders/1if09a9QyNfBRlAKey7If5preZ3BswudZ")} · ${L("240 Core Java Interview Q&As", "https://drive.google.com/drive/u/3/folders/1EIoIvlDjx-5nL4QPujP2FVUi_enhWIDF")}`
+        ]
+      },
+      {
+        icon: "📑", name: "Master Google Docs & LeetCode Study Guides",
+        subs: [
+          `Master Docs: ${L("All DSA Resources in One Google Doc", "https://docs.google.com/document/d/1wT7H71M7CghUwB9zdFS0yp_uPccOhqWYFdf_PHPfEFI/edit")} · ${L("Company-Wise PYQ Master Doc", "https://docs.google.com/document/d/1rQmRUJiiqcMbXRKoiGuv8FW21-HnXub5aabEtUqr6tE/edit")} · ${L("25 Free AI Courses for 2026 Doc", "https://docs.google.com/document/d/11brHXSJ2aesII5loI-CV2vz6KTi9b4JKUygs1P60v_4/edit")}`,
+          `LeetCode Guides: ${L("Let's Code LeetCode Resources", "https://www.lets-code.co.in/articles/leetcoderesources/")} · ${L("Topic-Wise Problems for Beginners", "https://leetcode.com/discuss/career/448024/topic-wise-problems-for-beginners")}`,
+          `LeetCode Must-Reads: ${L("Important Links from All Over LeetCode", "https://leetcode.com/discuss/general-discussion/665604/important-and-useful-links-from-all-over-the-leetcode")} · ${L("Topics You Can't Skip (Study Plan)", "https://leetcode.com/discuss/interview-question/1098600/TOPICS-WHICH-YOU-CAN'T-SKIP-or-INTERVIEW-PREPARATION-or-STUDY-PLAN")} · ${L("System Design Posts at FAANG", "https://leetcode.com/discuss/interview-question/1140451/helpful-list-of-leetcode-posts-on-system-design-at-facebook-google-amazon-uber-microsoft")}`
+        ]
+      },
+      {
+        icon: "🚀", name: "Curated Company & Funded Startup Spreadsheets",
+        subs: [
+          `Master Resource Blog: ${L("Every Resource Shared in One Place – Let's Code", "https://www.lets-code.co.in/blogs/every-resource-i-have-ever-shared-all-in-one-place/")}`,
+          `Startup & MNC Sheets: ${L("1500+ Recently Funded Startups (Sheet)", "https://docs.google.com/spreadsheets/d/1w11kuIGWOVATOad5acQqVWSzELF25xCyP6j3yoBiEUc/edit")} · ${L("1300+ Hidden Tech Companies Hiring (Sheet)", "https://docs.google.com/spreadsheets/d/1_71AwBP4lv3yCBHjfbYbZ1gqNWMQht0JRPB6H7y9_Mg/edit")}`,
+          `India Top Employers: ${L("Top MNCs in India (Sheet)", "https://docs.google.com/spreadsheets/d/1ajaNmxk9bKHgkV4v25uayDXUoCsGVlONCY4AQun1sy4/edit")} · ${L("Top Product-Based Companies in India (Sheet)", "https://docs.google.com/spreadsheets/d/1Q6JA_1Vi_8efZPn55ZbrceRcPHmQXGzq/edit")}`,
+          `AI & Freshers Sheets: ${L("Indian Startups Hiring Freshers in DS/ML/AI (Sheet)", "https://docs.google.com/spreadsheets/d/1XIbZFfVN8pPJjx0x4FhUijItsjQlIOLggS53u34Mj-E/edit")} · ${L("Top 100 GenAI Companies", "https://docs.google.com/spreadsheets/d/1TdyDKZkoHEmtxlN5xGAEeTesPRbdfGgpe1H8_Wyb7C0/edit")} · ${L("32 Curated Startup & Hiring Lists Doc", "https://docs.google.com/document/d/1632lYui_OW_9rGJjJyFFoY85QD-I17Qq/edit")}`
+        ]
+      },
+      {
+        icon: "🌍", name: "Remote Hiring, Visa Sponsorship & City Job Kits",
+        subs: [
+          `Remote Spreadsheets: ${L("100% Remote Hiring Companies (Sheet)", "https://docs.google.com/spreadsheets/d/1CLTL5PoQ99tbxQ5qbj2ScxqbzS0ASr0Qm0b1wjOot9I/edit")} · ${L("900 Remote Startups List (Sheet)", "https://docs.google.com/spreadsheets/d/1TLJSlNxCbwRNxy14Toe1PYwbCTY7h0CNHeer9J0VRzE/edit")} · ${L("100% Remote Job Seekers Kit", "https://docs.google.com/spreadsheets/d/1DOlqcLGoRFdhFoaRsBZs2DgEjjjQlzSV/edit")}`,
+          `Visa Sponsorship Sheets: ${L("US H1B Tech Sponsors (Sheet)", "https://docs.google.com/spreadsheets/d/1XIQlzncaI9QdOIhjJ6BQOzqHLbRWzdll/edit")} · ${L("European Visa Sponsors (Sheet)", "https://docs.google.com/spreadsheets/d/13Q8-g51jan_e2ISx-yAFkXU2uW0SNR7G-TeoNYxPIBs/edit")} · ${L("Japan Tech Visa Sponsors (Sheet)", "https://docs.google.com/spreadsheets/d/1LGlwuZKe0-6UnHpX2ATUFmUZNKflLJEj/edit")}`,
+          `City & Role Kits: ${L("Bangalore Job Seekers Kit", "https://docs.google.com/spreadsheets/d/1F76IAJ9661keW37wFZqutIXOQf1vBJNx/edit")} · ${L("Hyderabad Job Seekers Kit", "https://docs.google.com/spreadsheets/d/1VklDXBtFqkRHzuyRIS4Um1ap_mOCgvha/edit")} · ${L("Product Management Kit 2026", "https://docs.google.com/spreadsheets/d/1WO4rrbZZeERWtejurrHtINBt4d2Qc3C9/edit")}`,
+          `City Portals on Let's Code: ${L("Bangalore Startups", "https://www.lets-code.co.in/startups-list/bangalore-startups-list/")} · ${L("Hyderabad Startups", "https://www.lets-code.co.in/startups-list/hyderabad-startup-list/")} · ${L("Chennai Startups", "https://www.lets-code.co.in/startups-list/chennai-startup-list/")} · ${L("Pune Startups", "https://www.lets-code.co.in/startups-list/pune-startup-list/")} · ${L("Delhi/NCR Startups", "https://www.lets-code.co.in/startups-list/delhi-startup-list/")}`
+        ]
+      },
+      {
+        icon: "⭐", name: "Must-Star GitHub Repositories & AI Career Toolkit",
+        subs: [
+          `CS & Interview Repos: ${L("Coding Interview University", "https://github.com/jwasham/coding-interview-university")} · ${L("System Design Primer", "https://github.com/donnemartin/system-design-primer")} · ${L("OSSU Computer Science", "https://github.com/ossu/computer-science")} · ${L("Developer Roadmaps (roadmap.sh)", "https://github.com/kamranahmedse/developer-roadmap")}`,
+          `AI, Data & Security Repos: ${L("Microsoft ML for Beginners", "https://github.com/microsoft/ML-For-Beginners")} · ${L("Data Engineering Zoomcamp", "https://github.com/DataTalksClub/data-engineering-zoomcamp")} · ${L("MLOps Zoomcamp", "https://github.com/DataTalksClub/mlops-zoomcamp")} · ${L("OWASP CheatSheetSeries", "https://github.com/OWASP/CheatSheetSeries")} · ${L("The Book of Secret Knowledge", "https://github.com/trimstray/the-book-of-secret-knowledge")}`,
+          `Let's Code 8 Free AI Tools: ${L("Open AI Career Toolkit Dashboard (Mock Interview, Resume Studio, LinkedIn Optimizer, Job Ready Score, AI Job Finder, Cover Letter AI, Study Plan Generator)", "https://www.lets-code.co.in/dashboard/")}`
+        ]
+      }
+    ]
+  }
+];
+
+let activeSection = 'all';
+
+function createRoadmap(filterText = '', sectionFilter = activeSection) {
+  const container = document.getElementById('roadmap');
+  container.innerHTML = '';
+  const query = filterText.trim().toLowerCase();
+
+  const filteredPhases = phases.map((phase, pi) => {
+    if (sectionFilter !== 'all' && phase.section !== sectionFilter) {
+      return { ...phase, pi, matchedTopics: [] };
+    }
+    const matchedTopics = phase.topics.filter(topic => {
+      if (!query) return true;
+      const inPhase = phase.title.toLowerCase().includes(query) || phase.tag.toLowerCase().includes(query);
+      const inName = topic.name.toLowerCase().includes(query);
+      const inSubs = topic.subs.some(s => s.toLowerCase().includes(query));
+      return inPhase || inName || inSubs;
+    });
+    return { ...phase, pi, matchedTopics };
+  }).filter(p => p.matchedTopics.length > 0);
+
+  filteredPhases.forEach((phase, index) => {
+    const phaseEl = document.createElement('div');
+    phaseEl.className = 'phase';
+    phaseEl.style.setProperty('--phase-color', phase.color);
+    phaseEl.style.setProperty('--phase-color-bg', phase.colorBg);
+
+    const topicsHTML = phase.matchedTopics.map((topic, ti) => `
+      <div class="topic-card ${query ? 'expanded' : ''}" onclick="toggleCard(this)" data-index="${phase.pi}-${ti}">
+        <div class="topic-top">
+          <span class="topic-icon">${topic.icon}</span>
+          <span class="topic-name">${topic.name}</span>
+          <span class="topic-count">${topic.subs.length} items</span>
+          <span class="expand-btn">▼</span>
+        </div>
+        <div class="topic-detail">
+          <ul class="subtopics">
+            ${topic.subs.map(s => `<li><span>${s}</span></li>`).join('')}
+          </ul>
+        </div>
+      </div>
+    `).join('');
+
+    phaseEl.innerHTML = `
+      <div class="phase-header">
+        <span class="phase-num">SECTION ${phase.num}</span>
+        <h2 class="phase-title">${phase.title}</h2>
+        <a class="phase-source-link" href="${phase.sourceUrl}" target="_blank" rel="noopener noreferrer">${phase.sourceLabel} ↗</a>
+        <div class="phase-line" style="--phase-color:${phase.color}"></div>
+        <span class="phase-tag" style="color:${phase.color};border-color:${phase.color};background:${phase.colorBg}">${phase.tag}</span>
+      </div>
+      <div class="topics-grid" style="--phase-color:${phase.color}">
+        ${topicsHTML}
+      </div>
+    `;
+
+    container.appendChild(phaseEl);
+
+    if (index < filteredPhases.length - 1) {
+      const line = document.createElement('div');
+      line.className = 'timeline-line';
+      container.appendChild(line);
+    }
+  });
+}
+
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+}
+
+document.querySelectorAll('.hub-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.hub-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    activeSection = btn.getAttribute('data-section');
+    createRoadmap(document.getElementById('searchInput').value, activeSection);
+  });
+});
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  createRoadmap(e.target.value, activeSection);
+});
+
+document.getElementById('expandAllBtn').addEventListener('click', () => {
+  document.querySelectorAll('.topic-card').forEach(c => c.classList.add('expanded'));
+});
+
+document.getElementById('collapseAllBtn').addEventListener('click', () => {
+  document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('expanded'));
+});
+
+// Scroll progress
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.body.scrollHeight - window.innerHeight;
+  const pct = total > 0 ? (scrolled / total * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+});
+
+createRoadmap();
+</script>
+</body>
+</html>
